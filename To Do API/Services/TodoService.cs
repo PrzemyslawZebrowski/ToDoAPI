@@ -1,5 +1,7 @@
-﻿using ToDoAPI.Entities;
+﻿using AutoMapper;
+using ToDoAPI.Entities;
 using ToDoAPI.Exceptions;
+using ToDoAPI.Models;
 
 namespace ToDoAPI.Services
 {
@@ -7,15 +9,18 @@ namespace ToDoAPI.Services
     {
         IEnumerable<Todo> GetAll();
         Todo GetById(int id);
+        int CreateTodo(CreateToDoDto dto);
     }
 
     public class TodoService : ITodoService
     {
         private readonly TodoDbContext _dbContext;
+        private readonly IMapper _mapper;
 
-        public TodoService(TodoDbContext dbContext)
+        public TodoService(TodoDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
         public IEnumerable<Todo> GetAll()
         {
@@ -36,6 +41,15 @@ namespace ToDoAPI.Services
             }
 
             return todo;
+        }
+
+        public int CreateTodo(CreateToDoDto dto)
+        {
+            var todoEntity = _mapper.Map<Todo>(dto);
+
+            _dbContext.Todos.Add(todoEntity);
+            _dbContext.SaveChanges();
+            return todoEntity.Id;
         }
     }
 }

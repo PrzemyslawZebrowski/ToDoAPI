@@ -22,14 +22,12 @@ namespace ToDoAPI
                 {
                     Title = "Zadanie matematyka",
                     Description = "Podrecznik, strona 32, zadanie 6",
-                    IsCompleted = false,
                     Deadline = new DateTime(2023, 2, 13)
                 },
                 new Todo()
                 {
                     Title = "Urodziny kuby",
                     Description = "Kupic prezent",
-                    IsCompleted = false,
                     Deadline = new DateTime(2023, 5, 11)
                 }
             };
