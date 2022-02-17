@@ -14,7 +14,6 @@ namespace ToDoAPI
         public ToDoMappingProfile()
         {
             CreateMap<CreateToDoDto, Todo>();
-                //.ForMember(t => t.Deadline,opt => opt.MapFrom(d=> (d.Deadline) ));
         }
     }
 }

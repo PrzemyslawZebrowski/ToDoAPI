@@ -35,5 +35,18 @@ namespace ToDoAPI.Controllers
             var id = _service.CreateTodo(dto);
             return Created($"api/todos/{id}", null);
         }
+
+        [HttpDelete("{id}")]
+        public ActionResult DeleteTodo([FromRoute] int id)
+        {
+            _service.DeleteTodo(id);
+            return NoContent();
+        }
+        [HttpPut("{id}")]
+        public ActionResult UpdateTodo([FromRoute] int id, [FromBody] UpdateToDoDto dto)
+        {
+            _service.UpdateTodo(id, dto);
+            return NoContent();
+        }
     }
 }

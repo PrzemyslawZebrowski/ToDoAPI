@@ -1,5 +1,7 @@
 using System.Reflection;
 using FluentValidation;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Identity;
 using NLog.Web;
 using ToDoAPI;
 using ToDoAPI.Entities;
@@ -21,8 +23,12 @@ builder.Services.AddScoped<ToDoSeeder>();
 builder.Services.AddScoped<ITodoService, TodoService>();
 builder.Services.AddScoped<ErrorHandlingMiddleware>();
 builder.Host.UseNLog();
+builder.Services.AddFluentValidation();
 builder.Services.AddScoped<IValidator<CreateToDoDto>, CreateToDoDtoValidator>();
+builder.Services.AddScoped<IValidator<RegisterUserDto>, RegisterUserDtoValidator>();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 var app = builder.Build();
 
 var scope = app.Services.CreateScope();

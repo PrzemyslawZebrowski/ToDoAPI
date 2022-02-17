@@ -7,5 +7,6 @@
         public string Description { get; set; }
         public bool IsCompleted { get; set; } = false;
         public DateTime? Deadline { get; set; }
+        public int UserId { get; set; }
     }
 }

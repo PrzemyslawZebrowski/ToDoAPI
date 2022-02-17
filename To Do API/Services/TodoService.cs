@@ -10,6 +10,8 @@ namespace ToDoAPI.Services
         IEnumerable<Todo> GetAll();
         Todo GetById(int id);
         int CreateTodo(CreateToDoDto dto);
+        public void DeleteTodo(int id);
+        void UpdateTodo(int id, UpdateToDoDto dto);
     }
 
     public class TodoService : ITodoService
@@ -51,5 +53,40 @@ namespace ToDoAPI.Services
             _dbContext.SaveChanges();
             return todoEntity.Id;
         }
+
+        public void DeleteTodo(int id)
+        {
+            var todoToDelete= _dbContext.Todos.FirstOrDefault(t => t.Id == id);
+
+            if (todoToDelete is null)
+                throw new NotFoundException("Not found todo");
+
+            _dbContext.Todos.Remove(todoToDelete);
+
+            _dbContext.SaveChanges();
+        }
+
+        public void UpdateTodo(int id, UpdateToDoDto dto)
+        {
+            var todo = _dbContext.Todos.FirstOrDefault(t => t.Id == id);
+
+            if (todo is null)
+                throw new NotFoundException("Not found todo");
+
+            if (!string.IsNullOrEmpty(dto.Title))
+                todo.Title = dto.Title;
+
+            if (!string.IsNullOrEmpty(dto.Description))
+                todo.Description = dto.Description;
+
+            if (dto.Deadline.HasValue)
+                todo.Deadline = dto.Deadline;
+
+            if (dto.IsCompleted.HasValue)
+                todo.IsCompleted = dto.IsCompleted.Value;
+
+            _dbContext.SaveChanges();
+        }
+
     }
 }
