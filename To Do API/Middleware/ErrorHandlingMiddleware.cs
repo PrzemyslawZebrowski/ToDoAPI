@@ -21,6 +21,11 @@ namespace ToDoAPI.Middleware
                 context.Response.StatusCode = StatusCodes.Status404NotFound;
                 await context.Response.WriteAsync(e.Message);
             }
+            catch (BadRequestException e)
+            {
+                context.Response.StatusCode = StatusCodes.Status400BadRequest;
+                await context.Response.WriteAsync(e.Message);
+            }
             catch (Exception e)
             {
                 _logger.Log(LogLevel.Error, e, e.Message);

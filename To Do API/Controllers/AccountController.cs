@@ -19,11 +19,17 @@ namespace ToDoAPI.Controllers
         {
             _service = service;
         }
-        [HttpPost]
+        [HttpPost("register")]
         public ActionResult RegisterUser([FromBody] RegisterUserDto dto)
         {
             _service.RegisterUser(dto);
             return Ok();
+        }
+        [HttpPost("login")]
+        public ActionResult LoginUser([FromBody] LoginUserDto dto)
+        {
+            var token = _service.LoginUser(dto);
+            return Ok(token);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ToDoAPI.Entities;
 using ToDoAPI.Models;
 using ToDoAPI.Services;
@@ -7,6 +8,7 @@ namespace ToDoAPI.Controllers
 {
     [ApiController]
     [Route("api/todos")]
+    [Authorize]
     public class TodoController : ControllerBase
     {
         private readonly ITodoService _service;
