@@ -1,10 +1,5 @@
-﻿namespace ToDoAPI.Exceptions
+﻿namespace ToDoAPI.Exceptions;
+
+public class ForbidException : Exception
 {
-    public class ForbidException : Exception
-    {
-        public ForbidException()
-        {
-            
-        }
-    }
 }
