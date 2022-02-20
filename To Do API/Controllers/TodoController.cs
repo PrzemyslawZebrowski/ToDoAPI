@@ -7,7 +7,7 @@ using ToDoAPI.Services;
 namespace ToDoAPI.Controllers
 {
     [ApiController]
-    [Route("api/todos")]
+    [Route("api/todo")]
     [Authorize]
     public class TodoController : ControllerBase
     {
@@ -17,7 +17,6 @@ namespace ToDoAPI.Controllers
         {
             _service = service;
         }
-
         [HttpGet]
         public ActionResult GetAll()
         {

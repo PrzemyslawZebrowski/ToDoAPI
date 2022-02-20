@@ -26,6 +26,10 @@ namespace ToDoAPI.Middleware
                 context.Response.StatusCode = StatusCodes.Status400BadRequest;
                 await context.Response.WriteAsync(e.Message);
             }
+            catch (ForbidException)
+            {
+                context.Response.StatusCode = StatusCodes.Status403Forbidden;
+            }
             catch (Exception e)
             {
                 _logger.Log(LogLevel.Error, e, e.Message);

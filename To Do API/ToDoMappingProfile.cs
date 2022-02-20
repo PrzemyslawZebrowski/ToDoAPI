@@ -14,6 +14,7 @@ namespace ToDoAPI
         public ToDoMappingProfile()
         {
             CreateMap<CreateToDoDto, Todo>();
+            CreateMap<Todo, ToDoDto>();
         }
     }
 }
