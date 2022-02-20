@@ -2,9 +2,9 @@
 
 namespace ToDoAPI.Models.Validators;
 
-public class CreateToDoDtoValidator : AbstractValidator<CreateToDoDto>
+public class CreateTodoDtoValidator : AbstractValidator<CreateTodoDto>
 {
-    public CreateToDoDtoValidator()
+    public CreateTodoDtoValidator()
     {
         RuleFor(d => d.Title)
             .NotEmpty();

@@ -2,11 +2,11 @@
 
 namespace ToDoAPI;
 
-public class ToDoSeeder
+public class TodoSeeder
 {
     private readonly TodoDbContext _dbContext;
 
-    public ToDoSeeder(TodoDbContext dbContext)
+    public TodoSeeder(TodoDbContext dbContext)
     {
         _dbContext = dbContext;
     }

@@ -4,11 +4,11 @@ using ToDoAPI.Models;
 
 namespace ToDoAPI;
 
-public class ToDoMappingProfile : Profile
+public class TodoMappingProfile : Profile
 {
-    public ToDoMappingProfile()
+    public TodoMappingProfile()
     {
-        CreateMap<CreateToDoDto, Todo>();
-        CreateMap<Todo, ToDoDto>();
+        CreateMap<CreateTodoDto, Todo>();
+        CreateMap<Todo, TodoDto>();
     }
 }

@@ -4,7 +4,7 @@ using ToDoAPI.Entities;
 
 namespace ToDoAPI.Authorization;
 
-public class ToDoAuthorizationHandler : AuthorizationHandler<SameAuthorRequirement, Todo>
+public class TodoAuthorizationHandler : AuthorizationHandler<SameAuthorRequirement, Todo>
 {
     protected override Task HandleRequirementAsync(AuthorizationHandlerContext context,
         SameAuthorRequirement requirement, Todo resource)

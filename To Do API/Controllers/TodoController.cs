@@ -32,7 +32,7 @@ public class TodoController : ControllerBase
     }
 
     [HttpPost]
-    public ActionResult CreateTodo([FromBody] CreateToDoDto dto)
+    public ActionResult CreateTodo([FromBody] CreateTodoDto dto)
     {
         var id = _service.CreateTodo(dto);
         return Created($"api/todos/{id}", null);
@@ -46,7 +46,7 @@ public class TodoController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public ActionResult UpdateTodo([FromRoute] int id, [FromBody] UpdateToDoDto dto)
+    public ActionResult UpdateTodo([FromRoute] int id, [FromBody] UpdateTodoDto dto)
     {
         _service.UpdateTodo(id, dto);
         return NoContent();

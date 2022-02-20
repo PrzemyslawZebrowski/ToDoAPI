@@ -1,6 +1,6 @@
 ﻿namespace ToDoAPI.Models;
 
-public class CreateToDoDto
+public class CreateTodoDto
 {
     public string Title { get; set; }
     public string Description { get; set; }

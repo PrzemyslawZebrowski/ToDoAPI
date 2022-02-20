@@ -9,11 +9,11 @@ namespace ToDoAPI.Services;
 
 public interface ITodoService
 {
-    IEnumerable<ToDoDto> GetAll();
+    IEnumerable<TodoDto> GetAll();
     Todo GetById(int id);
-    int CreateTodo(CreateToDoDto dto);
+    int CreateTodo(CreateTodoDto dto);
     public void DeleteTodo(int id);
-    void UpdateTodo(int id, UpdateToDoDto dto);
+    void UpdateTodo(int id, UpdateTodoDto dto);
 }
 
 public class TodoService : ITodoService
@@ -32,13 +32,13 @@ public class TodoService : ITodoService
         _authorizationService = authorizationService;
     }
 
-    public IEnumerable<ToDoDto> GetAll()
+    public IEnumerable<TodoDto> GetAll()
     {
         var todos = _dbContext.Todos.Where(t => t.CreatedById == _contextService.UserId!.Value);
 
         if (!todos.Any()) throw new NotFoundException("Not found any todos");
 
-        var toDoDtos = _mapper.Map<List<ToDoDto>>(todos);
+        var toDoDtos = _mapper.Map<List<TodoDto>>(todos);
 
         return toDoDtos;
     }
@@ -56,7 +56,7 @@ public class TodoService : ITodoService
         return todo;
     }
 
-    public int CreateTodo(CreateToDoDto dto)
+    public int CreateTodo(CreateTodoDto dto)
     {
         var todoEntity = _mapper.Map<Todo>(dto);
 
@@ -84,7 +84,7 @@ public class TodoService : ITodoService
         _dbContext.SaveChanges();
     }
 
-    public void UpdateTodo(int id, UpdateToDoDto dto)
+    public void UpdateTodo(int id, UpdateTodoDto dto)
     {
         var todo = _dbContext.Todos.FirstOrDefault(t => t.Id == id);
 

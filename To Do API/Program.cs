@@ -47,24 +47,24 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<TodoDbContext>();
-builder.Services.AddScoped<ToDoSeeder>();
+builder.Services.AddScoped<TodoSeeder>();
 builder.Services.AddScoped<ITodoService, TodoService>();
 builder.Services.AddScoped<ErrorHandlingMiddleware>();
 builder.Host.UseNLog();
 builder.Services.AddFluentValidation();
-builder.Services.AddScoped<IValidator<CreateToDoDto>, CreateToDoDtoValidator>();
+builder.Services.AddScoped<IValidator<CreateTodoDto>, CreateTodoDtoValidator>();
 builder.Services.AddScoped<IValidator<RegisterUserDto>, RegisterUserDtoValidator>();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IUserContextService, UserContextService>();
-builder.Services.AddScoped<IAuthorizationHandler, ToDoAuthorizationHandler>();
+builder.Services.AddScoped<IAuthorizationHandler, TodoAuthorizationHandler>();
 
 var app = builder.Build();
 
 var scope = app.Services.CreateScope();
-var seeder = scope.ServiceProvider.GetRequiredService<ToDoSeeder>();
+var seeder = scope.ServiceProvider.GetRequiredService<TodoSeeder>();
 seeder.Seed();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
